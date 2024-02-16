@@ -1,0 +1,43 @@
+CREATE TABLE Pedidos (
+	PedidoID INT PRIMARY KEY,
+	Nome VARCHAR(255),
+	Descricao VARCHAR(255),
+	Valor INT,
+	Quantidade INT,
+);
+
+CREATE TABLE Fornecedor (
+	FornecedorID INT PRIMARY KEY,
+	Nome VARCHAR(255),
+	Descricao VARCHAR(255),
+	Produto VARCHAR(255),
+	CPF VARCHAR(14),
+);
+
+CREATE TABLE Clientes (
+	Nome VARCHAR(255),
+	CPF VARCHAR(14) PRIMARY KEY,
+	Email VARCHAR(255),
+	Telefone INT,
+	Endereco VARCHAR(255),
+);
+
+CREATE TABLE Produtos (
+	ProdutoID INT PRIMARY KEY,
+	Nome VARCHAR(255),
+	Valor INT,
+	Quantidade INT,
+	Descricao VARCHAR(255),
+);
+
+CREATE TABLE Funcionarios(
+	FuncionariosID INT PRIMARY KEY,
+	Nome VARCHAR(255),
+	Cargo VARCHAR(255),
+	CPF VARCHAR(14),
+	Telefone INT,
+	Turno VARCHAR(255),
+);
+
+
+

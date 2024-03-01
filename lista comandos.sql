@@ -1,44 +1,48 @@
-CREATE DATABASE exemplo1
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
 
-CREATE DATABASE exemplo2
 
-DROP DATABASE exemplo2
 
--- COMANDOS PARA CRIAR TABELAS
-
-CREATE TABLE FUNCIONARIOS(
-	id_funcionario SERIAL NOT NULL PRIMARY KEY,
-	nome_funcionario VARCHAR(100) NOT NULL,
-	status_funcionario BOOLEAN NOT NULL,
-	cidade_funcionario VARCHAR(100)	
+CREATE TABLE Cliente (
+id_cliente INT NOT NULL PRIMARY KEY,
+nome_cliente VARCHAR(100) NOT NULL,
+endereço_cliente VARCHAR(100) NOT NULL,
+telefone_cliente NUMERIC(11) NOT NULL,
+email_cliente VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE PRODUTOS(
-	id_produto INT NOT NULL PRIMARY KEY,
-	nome_produto VARCHAR(255) NOT NULL,
-	quantidade_produto INT NOT NULL,
-	valor_produto DECIMAL(7,2),
-	validade_produto DATE NOT NULL
-	FOREIGN KEY id_funcionario REFERENCES FUNCIONARIOS --CHAVE ESTRANGEIRA
+CREATE TABLE Produto (
+id_produto INT NOT NULL PRIMARY KEY,
+nome_produto VARCHAR(100),
+descrição_produto VARCHAR(255),
+preço_produto MONEY NOT NULL,
+estoque_produto INT
 );
 
-CREATE TABLE modelo(
-	id_modelo INT NOT NULL PRIMARY KEY
+CREATE TABLE Pedido (
+id_pedido INT NOT NULL PRIMARY KEY,
+data_pedido DATE
 );
 
--- COMANDOS PARA APAGAR TABELA
+CREATE TABLE Item (
+id_item INT NOT NULL PRIMARY KEY,
+quantidade_item INT NOT NULL,
+preço_item MONEY NOT NULL
+);
 
-DROP TABLE modelo
+CREATE TABLE ClienteProduto (
+id_clienteProduto INT NOT NULL PRIMARY KEY,
+id_pedido INT NOT NULL,
+id_cliente INT NOT NULL,
+FOREIGN KEY(id_pedido) REFERENCES Pedido (id_pedido),
+FOREIGN KEY(id_cliente) REFERENCES Cliente (id_cliente)
+);
 
--- COMANDO VISUALIZAR TABELAS
+CREATE TABLE ProdutoPedido (
+id_produtoPedido INT NOT NULL PRIMARY KEY,
+id_produto INT NOT NULL,
+id_pedido INT NOT NULL,
+FOREIGN KEY(id_produto) REFERENCES Produto (id_produto),
+FOREIGN KEY(id_pedido) REFERENCES Pedido (id_pedido)
+);
 
-SELECT * FROM FUNCIONARIOS
-SELECT * FROM PRODUTOS
-
--- COMANDOS PARA ALTERAR CAMPOS DE TABELA
-
-ALTER TABLE funcionarios
-ADD sexo CHAR(1)
-
-ALTER TABLE funcionarios
-DROP COLUMN sexo

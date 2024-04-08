@@ -22,6 +22,7 @@ CREATE TABLE Atendente (
     nome_atendente VARCHAR(255),
     cargo_atendente VARCHAR(255),
     telefone_atendente VARCHAR(15),
+    senha_atendente VARCHAR(255),
     
     PRIMARY KEY(id_atendente)
 );

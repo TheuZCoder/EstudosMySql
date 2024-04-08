@@ -1,5 +1,6 @@
 CREATE TABLE Produto (
     id_pizza SERIAL PRIMARY KEY,
+    image_pizza VARCHAR(255),
     nome_pizza VARCHAR(255),
     descricao_pizza VARCHAR(255),
     preco_pizza DECIMAL(10, 2)
@@ -41,7 +42,8 @@ CREATE TABLE cliente_pedido (
     id_cliente SERIAL,
     id_pedido SERIAL,
     id_atendente SERIAL,
-    FOREIGN KEY(id_cliente, id_atendente) REFERENCES AtendenteClientes(id_cliente, id_atendente),
+    FOREIGN KEY(id_cliente) REFERENCES Clientes(id_cliente),
+    FOREIGN KEY(id_atendente) REFERENCES Atendente(id_atendente),
     FOREIGN KEY(id_pedido) REFERENCES Pedidos(id_pedido)
 );
 

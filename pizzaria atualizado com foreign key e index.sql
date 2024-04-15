@@ -29,10 +29,11 @@ CREATE TABLE Atendente (
 
 CREATE TABLE Clientes(
     id_cliente SERIAL,
+    nome_cliente VARCHAR(255),
+    email_cliente VARCHAR(255),
     endereco_cliente VARCHAR(255),
     telefone_cliente VARCHAR(15),
-    email_cliente VARCHAR(255),
-    nome_cliente VARCHAR(255),
+    senha_cliente varchar(255),
     PRIMARY KEY(id_cliente)
 );
 

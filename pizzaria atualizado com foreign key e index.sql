@@ -23,9 +23,10 @@ CREATE TABLE Atendente (
     cargo_atendente VARCHAR(255),
     telefone_atendente VARCHAR(15),
     senha_atendente VARCHAR(255),
-    
     PRIMARY KEY(id_atendente)
 );
+
+CREATE INDEX idx_id_atendente ON Atendente (id_atendente);
 
 CREATE TABLE Clientes(
     id_cliente SERIAL,
@@ -37,16 +38,13 @@ CREATE TABLE Clientes(
     PRIMARY KEY(id_cliente)
 );
 
-CREATE INDEX idx_id_atendente ON AtendenteClientes (id_atendente);
-CREATE INDEX idx_id_cliente ON AtendenteClientes (id_cliente);
+CREATE INDEX idx_id_clientes ON Clientes (id_cliente);
 
 CREATE TABLE cliente_pedido (
     id_cliente SERIAL,
     id_pedido SERIAL,
-    id_atendente SERIAL,
     FOREIGN KEY(id_cliente) REFERENCES Clientes(id_cliente),
-    FOREIGN KEY(id_atendente) REFERENCES Atendente(id_atendente),
     FOREIGN KEY(id_pedido) REFERENCES Pedidos(id_pedido)
 );
 
-CREATE INDEX idx_id_cliente_pedido ON cliente_pedido (id_cliente, id_atendente, id_pedido);
+CREATE INDEX idx_id_cliente_pedido ON cliente_pedido (id_cliente,id_pedido);

@@ -18,33 +18,33 @@ CREATE TABLE Pedidos (
 CREATE INDEX idx_id_pedido ON Pedidos (id_pedido);
 
 CREATE TABLE Atendente (
-    id_atendente SERIAL,
+    id_atendente SERIAL PRIMARY KEY,
     nome_atendente VARCHAR(255),
     cargo_atendente VARCHAR(255),
     telefone_atendente VARCHAR(15),
-    senha_atendente VARCHAR(255),
-    PRIMARY KEY(id_atendente)
+    senha_atendente VARCHAR(255)
 );
 
 CREATE INDEX idx_id_atendente ON Atendente (id_atendente);
 
-CREATE TABLE Clientes(
-    id_cliente SERIAL,
+CREATE TABLE Clientes (
+    id_cliente SERIAL PRIMARY KEY,
     nome_cliente VARCHAR(255),
     email_cliente VARCHAR(255),
     endereco_cliente VARCHAR(255),
     telefone_cliente VARCHAR(15),
-    senha_cliente varchar(255),
-    PRIMARY KEY(id_cliente)
+    senha_cliente VARCHAR(255)
 );
 
 CREATE INDEX idx_id_clientes ON Clientes (id_cliente);
 
-CREATE TABLE cliente_pedido (
-    id_cliente SERIAL,
+CREATE TABLE Pedido_Produto (
     id_pedido SERIAL,
-    FOREIGN KEY(id_cliente) REFERENCES Clientes(id_cliente),
-    FOREIGN KEY(id_pedido) REFERENCES Pedidos(id_pedido)
+    id_produto SERIAL,
+    quantidade INT DEFAULT 1,
+    FOREIGN KEY (id_pedido) REFERENCES Pedidos (id_pedido),
+    FOREIGN KEY (id_produto) REFERENCES Produto (id_pizza),
+    PRIMARY KEY (id_pedido, id_produto)
 );
 
-CREATE INDEX idx_id_cliente_pedido ON cliente_pedido (id_cliente,id_pedido);
+CREATE INDEX idx_id_pedido_produto ON Pedido_Produto (id_pedido, id_produto);
